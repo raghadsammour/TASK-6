@@ -78,7 +78,7 @@ function theBiggestNum(numbers) {
     return biggest
 }
 
-let result3 = theBiggestNum([1345, 5, 3, 94, 2])
+let result3 = theBiggestNum([15, 587, 3, 94, 2])
 console.log(result3)
 
 
@@ -217,7 +217,7 @@ function removeDuplicates(array) {
     }
     return newArray
 }
-let result6 = removeDuplicates([1, 2, 2, 3, 4, 4, 6, 4, 5, 4, 1, 7])
+let result6 = removeDuplicates([1, 2, 2, 3, 4, 4, 6, 4, 5, 4, 1, 7, 8])
 console.log(result6)
 
 console.log("------7------")
@@ -417,7 +417,7 @@ function Chunk(arrays, num) {
     let arraychunk2 = []
     let tallLast = (arrays.length % num)
     let o
-    let print = ""
+    let print = "["
 
     for (let i = 0; i < arrays.length - tallLast;) {
 
@@ -425,7 +425,7 @@ function Chunk(arrays, num) {
             arraychunk[j] = arrays[i]
             i++
         }
-        print += `[[${arraychunk}],`
+        print += `[${arraychunk}],`
         j = 0
         o = i
     }
@@ -441,7 +441,7 @@ function Chunk(arrays, num) {
 
 }
 
-let result10 = Chunk([1, 2, 3, 4, 5, 6, 7], 3)
+let result10 = Chunk([1, 2, 3, 4, 5, 6, 7], 2)
 console.log(result10)
 
 
@@ -484,36 +484,23 @@ console.log("------12------")
 
 function rotateLeft(arrays, num) {
     let newArray = []
-    let l = (arrays.length) % num
-    if (l < arrays.length) {
-        for (let i = 0; i < l; i++) {
-            newArray[i] = arrays[i + (l)]
-        }
-        let n = newArray.length
-        let j = 0
-        while (newArray.length != arrays.length) {
-            newArray[n] = arrays[j]
-            n++
-            j++
-        }
-        return `[${newArray}]`
-    } else {
-        let l = arrays.length - (num % arrays.length)
-        for (let i = 0; i < l; i++) {
-            newArray[i] = arrays[i + (num % arrays.length)]
-        }
-        let n = newArray.length
-        let j = 0
-        while (newArray.length != arrays.length) {
-            newArray[n] = arrays[j]
-            n++
-            j++
-        }
-        return `[${newArray}]`
+
+    let l = arrays.length - (num % arrays.length)
+    for (let i = 0; i < l; i++) {
+        newArray[i] = arrays[i + (num % arrays.length)]
     }
+    let n = newArray.length
+    let j = 0
+    while (newArray.length != arrays.length) {
+        newArray[n] = arrays[j]
+        n++
+        j++
+    }
+    return `[${newArray}]`
 }
 
-let result12 = rotateLeft([1, 2, 3, 4, 5, 6], 7)
+
+let result12 = rotateLeft([1, 2, 3, 4, 5, 6, 7], 9)
 console.log(result12)
 
 
@@ -570,7 +557,7 @@ function commonInTowArrays(array1, array2) {
     return `[${common2}]`
 }
 
-let result13 = commonInTowArrays([1, 2, 3, 4, 5, 6], [2, 3, 3, 3, 3, 5])
+let result13 = commonInTowArrays([1, 1, 2, 3, 4, 5, 6], [2, 3, 3, 3, 3, 5])
 console.log(result13)
 
 
@@ -638,7 +625,7 @@ function countCharacter(word) {
 
 }
 
-let result14 = countCharacter("i love javascript")
+let result14 = countCharacter("hello world")
 console.log(result14)
 
 
@@ -721,7 +708,7 @@ function theLongest(sentence) {
         } else {
             letter = i
             test = count
-            if (test >= long) {
+            if (test > long) {
                 long = count
                 lastLetter = letter
             }
@@ -729,7 +716,7 @@ function theLongest(sentence) {
 
         }
     }
-    if (count >= long) {
+    if (count - 1 > long) {
         long = count
         lastLetter = sentence.length;
     }
@@ -765,6 +752,7 @@ console.log("------17------")
 // Output: 'a'
 function mostFrequent(arr) {
     let a
+    let print = ""
     for (let i = 0; i < arr.length; i++) {
         for (let j = 0; j < arr.length - 1; j++) {
             if (arr[j] > arr[j + 1]) {
@@ -801,10 +789,14 @@ function mostFrequent(arr) {
             result[i] = ""
         }
     }
-    return result
+
+    for (let i = 0; i < arr.length; i++) {
+        print += `${result[i]} `
+    }
+    return print
 
 }
-let result171 = mostFrequent([2, 3, 1])
+let result171 = mostFrequent([2, 3, 1, 3])
 console.log(result171)
 let result172 = mostFrequent(['a', 'b', 'b', 'a'])
 console.log(result172)
@@ -873,19 +865,19 @@ function firstNonRepeating(word) {
         for (let j = 0; j < word.length; j++) {
             if (word[i] == word[j]) {
                 count++
-
             }
         }
 
         if (count == 1) {
             return word[i]
         }
+
     }
 
     return "all of them the same"
 
 }
-result191 = firstNonRepeating("aabbss")
+result191 = firstNonRepeating("abasbs")
 console.log(result191)
 result192 = firstNonRepeating("swiss")
 console.log(result192)
